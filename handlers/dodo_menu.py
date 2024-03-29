@@ -83,4 +83,6 @@ async def show_pizzas(message: types.Message):
     
 @menu_router.message(F.text.lower() == "другие товары")
 async def show_pizzas(message: types.Message):
+    
+   # all_dishes = db.get_all_dishes()
     await message.answer("Другие товары которые мы можем предложить!")

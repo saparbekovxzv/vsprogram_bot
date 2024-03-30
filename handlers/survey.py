@@ -3,6 +3,7 @@ from aiogram.filters import Command
 from aiogram.fsm.state import State , StatesGroup
 from aiogram.fsm.context import FSMContext
 from pprint import pprint
+from bot import db
 
 class Survey(StatesGroup): 
     name = State() 
@@ -34,5 +35,8 @@ async def process_phone_number(message: types.Message, state: FSMContext):
         return
     data = await state.get_data()
     pprint(data)
+    # сохранение в базу данных
+    db.insert_survey(data)
+    # чистка стейма
     await state.clear()
     await message.answer("Заказ скоро будет у вас!")
